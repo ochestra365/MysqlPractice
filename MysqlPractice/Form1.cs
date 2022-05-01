@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using MysqlPractice.Controller;
 
@@ -24,8 +25,9 @@ namespace MysqlPractice
          this.LblMainStatus.TextAlign = ContentAlignment.MiddleCenter;
          this.WindowState = FormWindowState.Maximized;
          this.BackColor = Color.FromArgb(64, 64, 64);
-         //콤보박스 세팅
-         UIController.ComBoBoxSetting(CboMain);
+         this.CboMain.Hide();
+         this.BtnLoad.Hide();
+         
 
          //버튼 세팅
          UIController.ButtonSetting(BtnClear);
@@ -41,6 +43,10 @@ namespace MysqlPractice
          if (DataBaseObject.Open())
          {
             DBButtonConrol();
+            ShowList();
+            this.CboMain.SelectedIndex = 0;
+            this.BtnLoad.Show();
+            this.CboMain.Show();
             LblMainStatus.Text = "데이터 베이스 열림";
             LblMainStatus.ForeColor = Color.YellowGreen;
             LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
@@ -64,6 +70,8 @@ namespace MysqlPractice
             LblMainStatus.Text = "데이터 베이스 닫힘";
             LblMainStatus.ForeColor = Color.Red;
             LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
+            this.BtnLoad.Hide();
+            this.CboMain.Hide();
          }
       }
       private void BtnLoad_Click(object sender, EventArgs e)
@@ -116,6 +124,16 @@ namespace MysqlPractice
             BtnOpen.Enabled = true;
             BtnClose.Enabled = false;
             DataBaseObject.IsDBOpen = false;
+         }
+      }
+
+      private void ShowList()
+      {
+         DataTable comboItem = new DataTable();
+         comboItem=DataBaseObject.SelectComboValue();
+         foreach(DataRow _row in comboItem.Rows)
+         {
+            CboMain.Items.Add(_row[0].ToString());
          }
       }
       #endregion

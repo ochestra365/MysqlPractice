@@ -1,10 +1,14 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-
+using System.Collections.Generic;
+using System.Data;
+using MysqlPractice.Controller;
 namespace MysqlPractice.Controller
 {
    class UIController
    {
+      
+      
       internal static void ButtonSetting(Button _button)
       {
          _button.TextAlign = ContentAlignment.MiddleCenter;
@@ -31,18 +35,6 @@ namespace MysqlPractice.Controller
          {
             item.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
          }
-      }
-      internal static  void ComBoBoxSetting(ComboBox combo)
-      {
-         combo.Items.Add("customers");
-         combo.Items.Add("employees");
-         combo.Items.Add("offices");
-         combo.Items.Add("orderdetails");
-         combo.Items.Add("orders");
-         combo.Items.Add("payments");
-         combo.Items.Add("productlines");
-         combo.Items.Add("products");
-         combo.SelectedIndex = 0;
       }
    }
 }
