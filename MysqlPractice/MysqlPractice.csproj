@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\DBController.cs" />
+    <Compile Include="Controller\UIController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

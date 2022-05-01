@@ -31,13 +31,13 @@ namespace MysqlPractice
          this.WindowState = FormWindowState.Maximized;
          this.BackColor = Color.FromArgb(64, 64, 64);
          //콤보박스 세팅
-         ComBoBoxSetting();
+         UIController.ComBoBoxSetting(CboMain);
 
          //버튼 세팅
-         ButtonSetting(BtnClear);
-         ButtonSetting(BtnOpen);
-         ButtonSetting(BtnClose);
-         ButtonSetting(BtnLoad);
+         UIController.ButtonSetting(BtnClear);
+         UIController.ButtonSetting(BtnOpen);
+         UIController.ButtonSetting(BtnClose);
+         UIController.ButtonSetting(BtnLoad);
       }
 
 
@@ -85,7 +85,7 @@ namespace MysqlPractice
                DrgMain.DataSource = dt;
                LblMainStatus.Text = $"{CboMain.SelectedItem}";
                LblMainStatus.ForeColor = Color.YellowGreen;
-               DataGridViewSetting();
+               UIController.DataGridViewSetting(DrgMain);
             }
             else
             {
@@ -122,45 +122,6 @@ namespace MysqlPractice
             BtnClose.Enabled = false;
             DataBaseObject.IsDBOpen = false;
          }
-      }
-
-      private void ComBoBoxSetting()
-      {
-         CboMain.Items.Add("customers");
-         CboMain.Items.Add("employees");
-         CboMain.Items.Add("offices");
-         CboMain.Items.Add("orderdetails");
-         CboMain.Items.Add("orders");
-         CboMain.Items.Add("payments");
-         CboMain.Items.Add("productlines");
-         CboMain.Items.Add("products");
-         CboMain.SelectedIndex = 0;
-      }
-      private void DataGridViewSetting()
-      {
-        
-         DrgMain.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-         DrgMain.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-         DrgMain.AllowUserToAddRows = false;
-         DrgMain.AllowUserToResizeRows = false;
-         DrgMain.AllowUserToOrderColumns = false;
-         DrgMain.AllowUserToDeleteRows = false;
-         DrgMain.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
-         DrgMain.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-         foreach (DataGridViewColumn item in DrgMain.Columns) {
-            item.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-         }
-      }
-      private void ButtonSetting(Button _button)
-      {
-         _button.TextAlign = ContentAlignment.MiddleCenter;
-         _button.Font = new Font("Calibri", 30, FontStyle.Bold);
-         _button.BackColor = Color.FromArgb(64, 64, 64);
-         _button.ForeColor = Color.White;
-         _button.TabStop = false;
-         _button.FlatStyle = FlatStyle.Flat;
-         _button.FlatAppearance.BorderSize = 0;
-         _button.FlatAppearance.MouseOverBackColor = Color.Green;
       }
       #endregion
    }
