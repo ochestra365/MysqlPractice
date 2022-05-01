@@ -15,6 +15,7 @@ namespace MysqlPractice.Controller
          _button.FlatStyle = FlatStyle.Flat;
          _button.FlatAppearance.BorderSize = 0;
          _button.FlatAppearance.MouseOverBackColor = Color.Green;
+         if (_button.Name.Equals("BtnLoad")) _button.Hide();
       }
       internal static void DataGridViewSetting(DataGridView view)
       {
@@ -43,6 +44,7 @@ namespace MysqlPractice.Controller
          combo.Items.Add("productlines");
          combo.Items.Add("products");
          combo.SelectedIndex = 0;
+         combo.Hide();
       }
    }
 }

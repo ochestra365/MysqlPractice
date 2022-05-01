@@ -41,6 +41,8 @@ namespace MysqlPractice
          if (DataBaseObject.Open())
          {
             DBButtonConrol();
+            this.BtnLoad.Show();
+            this.CboMain.Show();
             LblMainStatus.Text = "데이터 베이스 열림";
             LblMainStatus.ForeColor = Color.YellowGreen;
             LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
@@ -59,6 +61,8 @@ namespace MysqlPractice
          else
          {
             DataBaseObject.Close();
+            this.BtnLoad.Hide();
+            this.CboMain.Hide();
             if (DrgMain.DataSource != null) DrgMain.DataSource = null;
             DBButtonConrol();
             LblMainStatus.Text = "데이터 베이스 닫힘";
