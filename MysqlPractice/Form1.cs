@@ -29,14 +29,10 @@ namespace MysqlPractice
          this.CenterToScreen();
          this.LblMainStatus.Text = null;
          this.LblMainStatus.TextAlign = ContentAlignment.MiddleCenter;
-         this.Size = new Size(500, 350);
+         this.WindowState = FormWindowState.Maximized;
          this.BackColor = Color.FromArgb(64, 64, 64);
-
          //콤보박스 세팅
          ComBoBoxSetting();
-
-         //데이터그리드뷰 세팅
-         DataGridViewSetting();
       }
 
 
@@ -83,6 +79,7 @@ namespace MysqlPractice
                DrgMain.DataSource = dt;
                LblMainStatus.Text = $"{CboMain.SelectedItem}";
                LblMainStatus.ForeColor = Color.YellowGreen;
+               DataGridViewSetting();
             }
             else
             {
