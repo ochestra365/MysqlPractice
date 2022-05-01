@@ -73,10 +73,10 @@ namespace MysqlPractice
             if (DataBaseObject.IsDBOpen.Equals(true))
             {
                DrgMain.DataSource = null;
-               
+
                DataTable dt = new DataTable();
-               dt = DataBaseObject.SelectWhatIWant(CboMain.SelectedItem.ToString());
-              
+               if (String.IsNullOrEmpty(CboMain.SelectedItem.ToString())) MessageBox.Show("불러올 정보를 선택해주세요");
+               else dt = DataBaseObject.SelectWhatIWant(CboMain.SelectedItem.ToString());
                DrgMain.DataSource = dt;
                LblMainStatus.Text = $"{CboMain.SelectedItem}";
                LblMainStatus.ForeColor = Color.YellowGreen;
@@ -90,9 +90,10 @@ namespace MysqlPractice
                LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
             }
          }
+         catch (NullReferenceException) { MessageBox.Show("불러올 정보를 선택해주세요"); }
          catch (Exception ex)
          {
-            MessageBox.Show($"에러 : {ex}"); LblMainStatus.Text = "에러 발생";
+            LblMainStatus.Text = "에러 발생";
             LblMainStatus.ForeColor = Color.Red;
          }
       }
