@@ -26,14 +26,20 @@ namespace MysqlPractice
          // 메인 세팅
          this.ShowIcon = false;
          this.ControlBox = false;
-         this.CenterToScreen();
          this.LblMainStatus.Text = null;
          this.LblMainStatus.TextAlign = ContentAlignment.MiddleCenter;
          this.WindowState = FormWindowState.Maximized;
          this.BackColor = Color.FromArgb(64, 64, 64);
          //콤보박스 세팅
          ComBoBoxSetting();
+
+         //버튼 세팅
+         ButtonSetting(BtnClear);
+         ButtonSetting(BtnOpen);
+         ButtonSetting(BtnClose);
+         ButtonSetting(BtnLoad);
       }
+
 
 
 
@@ -132,15 +138,29 @@ namespace MysqlPractice
       }
       private void DataGridViewSetting()
       {
+        
          DrgMain.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
          DrgMain.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
          DrgMain.AllowUserToAddRows = false;
          DrgMain.AllowUserToResizeRows = false;
          DrgMain.AllowUserToOrderColumns = false;
          DrgMain.AllowUserToDeleteRows = false;
+         DrgMain.ColumnHeadersDefaultCellStyle.BackColor = Color.LightPink;
+         DrgMain.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
          foreach (DataGridViewColumn item in DrgMain.Columns) {
             item.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
          }
+      }
+      private void ButtonSetting(Button _button)
+      {
+         _button.TextAlign = ContentAlignment.MiddleCenter;
+         _button.Font = new Font("Calibri", 30, FontStyle.Bold);
+         _button.BackColor = Color.FromArgb(64, 64, 64);
+         _button.ForeColor = Color.White;
+         _button.TabStop = false;
+         _button.FlatStyle = FlatStyle.Flat;
+         _button.FlatAppearance.BorderSize = 0;
+         _button.FlatAppearance.MouseOverBackColor = Color.Green;
       }
       #endregion
    }
