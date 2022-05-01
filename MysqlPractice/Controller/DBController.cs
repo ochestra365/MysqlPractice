@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
 
@@ -13,6 +9,10 @@ namespace MysqlPractice.Controller
    {
       MySqlConnection Conn = new MySqlConnection("Server=127.0.0.1;Port=3306;DataBase=classicmodels;Uid=root;Pwd=root");
       internal  bool IsDBOpen=false;
+      /// <summary>
+      /// DB Open
+      /// </summary>
+      /// <returns></returns>
       public bool Open()
       {
          try
@@ -32,7 +32,9 @@ namespace MysqlPractice.Controller
             return false;
          }
       }
-
+      /// <summary>
+      /// DB Close
+      /// </summary>
       public void Close()
       {
          try
@@ -48,7 +50,11 @@ namespace MysqlPractice.Controller
             MessageBox.Show($"에러 : {ex}");
          }
       }
-
+      /// <summary>
+      /// DB에서 원하는 정보 조회
+      /// </summary>
+      /// <param name="_table">불러오는 정보 모음집</param>
+      /// <returns></returns>
       public DataTable SelectWhatIWant(String _table)
       {
          DataSet ds = new DataSet();

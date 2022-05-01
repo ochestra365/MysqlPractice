@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace MysqlPractice.Controller
@@ -37,7 +32,6 @@ namespace MysqlPractice.Controller
             item.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
          }
       }
-
       internal static  void ComBoBoxSetting(ComboBox combo)
       {
          combo.Items.Add("customers");

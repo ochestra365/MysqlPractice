@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
 using MysqlPractice.Controller;
 
 namespace MysqlPractice
@@ -40,9 +34,6 @@ namespace MysqlPractice
          UIController.ButtonSetting(BtnLoad);
       }
 
-
-
-
       #endregion
       #region 버튼
       private void BtnOpen_Click(object sender, EventArgs e)
@@ -52,25 +43,29 @@ namespace MysqlPractice
             DBButtonConrol();
             LblMainStatus.Text = "데이터 베이스 열림";
             LblMainStatus.ForeColor = Color.YellowGreen;
+            LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
          }
          else
          {
             LblMainStatus.Text = "데이터 베이스 닫힘";
             LblMainStatus.ForeColor = Color.Red;
+            LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
+            LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
          }
       }
-
-     
-
       private void BtnClose_Click(object sender, EventArgs e)
       {
-         DataBaseObject.Close();
-         if (DrgMain.DataSource != null) DrgMain.DataSource = null;
-         DBButtonConrol();
-         LblMainStatus.Text = "데이터 베이스 닫힘";
-         LblMainStatus.ForeColor = Color.Red;
+         if (DataBaseObject.IsDBOpen.Equals(false)) MessageBox.Show("DB를 열어주세요");
+         else
+         {
+            DataBaseObject.Close();
+            if (DrgMain.DataSource != null) DrgMain.DataSource = null;
+            DBButtonConrol();
+            LblMainStatus.Text = "데이터 베이스 닫힘";
+            LblMainStatus.ForeColor = Color.Red;
+            LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
+         }
       }
-
       private void BtnLoad_Click(object sender, EventArgs e)
       {
          try
@@ -85,12 +80,14 @@ namespace MysqlPractice
                DrgMain.DataSource = dt;
                LblMainStatus.Text = $"{CboMain.SelectedItem}";
                LblMainStatus.ForeColor = Color.YellowGreen;
+               LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
                UIController.DataGridViewSetting(DrgMain);
             }
             else
             {
                LblMainStatus.Text = "DB부터 열어주세요";
                LblMainStatus.ForeColor = Color.Red;
+               LblMainStatus.Font = new Font("Calibri", 30, FontStyle.Bold);
             }
          }
          catch (Exception ex)
@@ -103,10 +100,7 @@ namespace MysqlPractice
       {
          this.Close();
       }
-
       #endregion
-
-
       #region 메서드
       private void DBButtonConrol()
       {
