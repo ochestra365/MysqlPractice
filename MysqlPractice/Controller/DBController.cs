@@ -77,28 +77,5 @@ namespace MysqlPractice.Controller
             return null;
          }
       }
-      
-      public DataTable SelectComboValue()
-      {
-         DataSet ds = new DataSet();
-         DataTable resultTable = new DataTable();
-         String query = " SHOW TABLES; ";
-         try
-         {
-            using (MySqlCommand cmd = new MySqlCommand(query, Conn))
-            using (MySqlDataAdapter adt = new MySqlDataAdapter(cmd))
-            {
-               adt.SelectCommand = cmd;
-               adt.Fill(ds);
-               resultTable = ds.Tables[0];
-               return resultTable;
-            }
-         }
-         catch (Exception ex)
-         {
-            MessageBox.Show($"에러 : {ex}"); 
-            return null;
-         }
-      }
    }
 }
