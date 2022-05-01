@@ -23,12 +23,14 @@ namespace MysqlPractice
       #region 이벤트
       private void FrmMain_Load(object sender, EventArgs e)
       {
+         // 메인 세팅
          this.ShowIcon = false;
          this.ControlBox = false;
          this.CenterToScreen();
          this.LblMainStatus.Text = null;
          this.LblMainStatus.TextAlign = ContentAlignment.MiddleCenter;
          this.Size = new Size(500, 350);
+         this.BackColor = Color.FromArgb(64, 64, 64);
 
          //콤보박스 세팅
          ComBoBoxSetting();
@@ -45,13 +47,14 @@ namespace MysqlPractice
       {
          if (DataBaseObject.Open())
          {
-            MessageBox.Show("DB 열림");
             DBButtonConrol();
-            
+            LblMainStatus.Text = "데이터 베이스 열림";
+            LblMainStatus.ForeColor = Color.YellowGreen;
          }
          else
          {
-            MessageBox.Show("DB 닫힘");
+            LblMainStatus.Text = "데이터 베이스 닫힘";
+            LblMainStatus.ForeColor = Color.Red;
          }
       }
 
@@ -60,7 +63,10 @@ namespace MysqlPractice
       private void BtnClose_Click(object sender, EventArgs e)
       {
          DataBaseObject.Close();
+         if (DrgMain.DataSource != null) DrgMain.DataSource = null;
          DBButtonConrol();
+         LblMainStatus.Text = "데이터 베이스 닫힘";
+         LblMainStatus.ForeColor = Color.Red;
       }
 
       private void BtnLoad_Click(object sender, EventArgs e)
@@ -75,15 +81,19 @@ namespace MysqlPractice
                dt = DataBaseObject.SelectWhatIWant(CboMain.SelectedItem.ToString());
               
                DrgMain.DataSource = dt;
+               LblMainStatus.Text = $"{CboMain.SelectedItem}";
+               LblMainStatus.ForeColor = Color.YellowGreen;
             }
             else
             {
-               MessageBox.Show("DB부터 열어주세요");
+               LblMainStatus.Text = "DB부터 열어주세요";
+               LblMainStatus.ForeColor = Color.Red;
             }
          }
          catch (Exception ex)
          {
-            MessageBox.Show($"에러 : {ex}");
+            MessageBox.Show($"에러 : {ex}"); LblMainStatus.Text = "에러 발생";
+            LblMainStatus.ForeColor = Color.Red;
          }
       }
       private void BtnClear_Click(object sender, EventArgs e)
